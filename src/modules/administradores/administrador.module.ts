@@ -5,9 +5,9 @@ import { Administrador } from './administrador.entity';
 import { AdministradorService } from './administrador.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Administrador])],
-  controllers: [AdministradorController],
-  providers: [AdministradorService],
-  exports: [],
+    imports: [TypeOrmModule.forFeature([Administrador])],
+    controllers: [AdministradorController],
+    providers: [AdministradorService],
+    exports: [],
 })
 export class AdministradorModule {}

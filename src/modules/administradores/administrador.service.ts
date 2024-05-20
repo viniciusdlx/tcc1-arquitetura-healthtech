@@ -7,26 +7,26 @@ import { Administrador } from './administrador.entity';
 
 @Injectable()
 export class AdministradorService {
-  constructor(
-    @InjectRepository(Administrador)
-    private readonly adminRepository: Repository<Administrador>,
-  ) {}
+    constructor(
+        @InjectRepository(Administrador)
+        private readonly adminRepository: Repository<Administrador>,
+    ) {}
 
-  async inserirAdmin(
-    inserirAdministradorDto: InserirAdministradorDto,
-  ): Promise<Administrador> {
-    try {
-      const novoAdministrador = await this.adminRepository.save({
-        cpf: inserirAdministradorDto.cpf,
-        dataNascimento: inserirAdministradorDto.dataNascimento,
-        email: inserirAdministradorDto.email,
-        nome: inserirAdministradorDto.nome,
-        telefone: inserirAdministradorDto.telefone,
-      });
+    async inserirAdmin(
+        inserirAdministradorDto: InserirAdministradorDto,
+    ): Promise<Administrador> {
+        try {
+            const novoAdministrador = await this.adminRepository.save({
+                cpf: inserirAdministradorDto.cpf,
+                dataNascimento: inserirAdministradorDto.dataNascimento,
+                email: inserirAdministradorDto.email,
+                nome: inserirAdministradorDto.nome,
+                telefone: inserirAdministradorDto.telefone,
+            });
 
-      return novoAdministrador;
-    } catch (error) {
-      throw new ExceptionsHandler(error.message);
+            return novoAdministrador;
+        } catch (error) {
+            throw new ExceptionsHandler(error.message);
+        }
     }
-  }
 }

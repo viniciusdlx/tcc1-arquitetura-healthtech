@@ -5,18 +5,18 @@ import { AdministradorService } from './administrador.service';
 
 @Controller({ path: 'administradores', version: '1' })
 export class AdministradorController {
-  constructor(private readonly administradorService: AdministradorService) {}
+    constructor(private readonly administradorService: AdministradorService) {}
 
-  @Post()
-  async inserirAdmin(
-    @Body() inserirAdministradorDto: InserirAdministradorDto,
-  ): Promise<Administrador> {
-    try {
-      return await this.administradorService.inserirAdmin(
-        inserirAdministradorDto,
-      );
-    } catch (error) {
-      throw new BadRequestException(error.message);
+    @Post()
+    async inserirAdmin(
+        @Body() inserirAdministradorDto: InserirAdministradorDto,
+    ): Promise<Administrador> {
+        try {
+            return await this.administradorService.inserirAdmin(
+                inserirAdministradorDto,
+            );
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
     }
-  }
 }
