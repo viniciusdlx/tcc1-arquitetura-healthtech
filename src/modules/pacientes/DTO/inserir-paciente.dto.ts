@@ -1,7 +1,21 @@
+import { ApiProperty } from '@nestjs/swagger';
+
 export class InserirPacienteDto {
-  nome: string;
-  cpf: string;
-  dataNascimento: string;
-  email: string;
-  endereco: string;
+    @ApiProperty()
+    nome: string;
+
+    @ApiProperty()
+    cpf: string;
+
+    @ApiProperty()
+    endereco: string;
+
+    @ApiProperty()
+    telefone: string;
+
+    @ApiProperty()
+    email: string;
+
+    @ApiProperty()
+    dataNascimento: string;
 }
