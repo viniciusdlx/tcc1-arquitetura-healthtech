@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from './config/database.module';
-import { AdminsModule } from './modules/admins/admins.module';
+import { AdministradorModule } from './modules/administradores/administrador.module';
 import { AtendimentosModule } from './modules/atendimentos/atendimentos.module';
-import { MedicosModule } from './modules/medicos/medicos.module';
-import { PacientesModule } from './modules/pacientes/pacientes.module';
+import { MedicoModule } from './modules/medicos/medico.module';
+import { PacienteModule } from './modules/pacientes/paciente.module';
 
 @Module({
   imports: [
     DatabaseModule,
-    PacientesModule,
-    MedicosModule,
+    PacienteModule,
+    MedicoModule,
     AtendimentosModule,
-    AdminsModule,
+    AdministradorModule,
   ],
   controllers: [],
   providers: [],

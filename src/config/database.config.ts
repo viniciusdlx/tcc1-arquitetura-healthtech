@@ -1,13 +1,11 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { Admins } from 'src/modules/admins/admins';
-import { Atendimentos } from 'src/modules/atendimentos/atendimentos';
-import { Medicos } from 'src/modules/medicos/medicos';
-import { Pacientes } from 'src/modules/pacientes/pacientes';
+
+console.log('path -> ', __dirname + '/../**/*.entity.{js, ts}');
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'sqlite',
   database: 'healthtech.db',
-  entities: [Admins, Atendimentos, Medicos, Pacientes],
+  entities: [__dirname + '/../**/**/*.entity{.ts,.js}'],
   synchronize: true, // Sincroniza o esquema do banco de dados com as entidades automaticamente
-  logging: true,
+  // logging: true,
 };

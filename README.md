@@ -12,3 +12,9 @@
 - typeorm: `npm install --save @nestjs/typeorm typeorm`
 - sqlite3: `npm install sqlite3`
 - dotenv: `npm install dotenv`
+- swagger: `npm install --save @nestjs/swagger`
+
+## Outros comandos:
+
+- sqlite wsl: `sqlitebrowser /home/username/path/to/healthtech.db`
+- sqlite wsl to windows: `ln -s /home/username/path/to/healthtech.db /mnt/c/path/to/healthtech.db`

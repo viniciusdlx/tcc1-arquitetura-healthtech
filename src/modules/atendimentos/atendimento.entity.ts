@@ -5,8 +5,8 @@ enum ModalidadeEnum {
   TELEMEDICINA = 'TELEMEDICINA',
 }
 
-@Entity('atendimentos')
-export class Atendimentos {
+@Entity('atendimento')
+export class Atendimento {
   @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
