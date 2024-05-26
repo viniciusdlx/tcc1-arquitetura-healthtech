@@ -6,14 +6,14 @@ import { MedicoModule } from './modules/medicos/medico.module';
 import { PacienteModule } from './modules/pacientes/paciente.module';
 
 @Module({
-  imports: [
-    DatabaseModule,
-    PacienteModule,
-    MedicoModule,
-    AtendimentosModule,
-    AdministradorModule,
-  ],
-  controllers: [],
-  providers: [],
+    imports: [
+        DatabaseModule,
+        PacienteModule,
+        MedicoModule,
+        AtendimentosModule,
+        AdministradorModule,
+    ],
+    controllers: [],
+    providers: [],
 })
 export class AppModule {}

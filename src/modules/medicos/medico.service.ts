@@ -26,4 +26,12 @@ export class MedicoService {
             throw new BadRequestException(error.message);
         }
     }
+
+    async buscarMedicoPorId(id: number): Promise<Medico> {
+        try {
+            return await this.medicoRepository.findOne({ where: { id: id } });
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
 }

@@ -6,9 +6,16 @@ import {
     UpdateDateColumn,
 } from 'typeorm';
 
-export enum ModalidadeEnum {
+export enum AtendimentoModalidadeEnum {
     PRESENCIAL = 'PRESENCIAL',
     TELEMEDICINA = 'TELEMEDICINA',
+}
+
+export enum AtendimentoStatusEnum {
+    AGENDADA = 'AGENDADA',
+    EM_ANDAMENTO = 'EM ANDAMENTO',
+    CONCLUIDA = 'CONCLUÍDA',
+    CANCELADA = 'CANCELADA',
 }
 
 @Entity('atendimento')
@@ -22,8 +29,21 @@ export class Atendimento {
     @Column({ name: 'hora', type: 'time' })
     hora: string;
 
-    @Column({ name: 'modalidade', type: 'varchar', enum: ModalidadeEnum })
-    modalidade: ModalidadeEnum;
+    @Column({
+        name: 'status',
+        type: 'varchar',
+        enum: AtendimentoStatusEnum,
+        nullable: true,
+        default: null,
+    })
+    status: AtendimentoStatusEnum;
+
+    @Column({
+        name: 'modalidade',
+        type: 'varchar',
+        enum: AtendimentoModalidadeEnum,
+    })
+    modalidade: AtendimentoModalidadeEnum;
 
     @Column({
         name: 'local',
