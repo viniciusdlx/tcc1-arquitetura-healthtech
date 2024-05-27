@@ -181,4 +181,16 @@ export class AtendimentosService {
             throw new BadRequestException(error.message);
         }
     }
+
+    async buscaPorMedicoId(id: string): Promise<Atendimento[]> {
+        try {
+            const atendimentos = await this.repositoryAtendimento.find({
+                where: { medicoId: Number(id) },
+            });
+
+            return atendimentos;
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
 }

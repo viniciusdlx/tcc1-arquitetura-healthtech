@@ -31,6 +31,20 @@ export class AtendimentosController {
         }
     }
 
+    @Get('/medicos/:id')
+    async buscarAtendimentosPorMedicoId(
+        @Param('id') id: string,
+        @Res() res: Response,
+    ) {
+        try {
+            const atendimentos =
+                await this.atendimentoService.buscaPorMedicoId(id);
+            res.status(HttpStatus.OK).send(atendimentos);
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
+
     @Post()
     async inserirAtendimento(
         @Body() inserirAtendimentoDto: InserirAtendimentoDto,
