@@ -2,6 +2,7 @@ import {
     BadRequestException,
     Body,
     Controller,
+    Get,
     HttpStatus,
     Param,
     Post,
@@ -15,6 +16,20 @@ import { AtendimentosService } from './atendimentos.service';
 @Controller('atendimentos')
 export class AtendimentosController {
     constructor(private readonly atendimentoService: AtendimentosService) {}
+
+    @Get('/pacientes/:id')
+    async buscarAtendimentosPorPacienteId(
+        @Param('id') id: string,
+        @Res() res: Response,
+    ) {
+        try {
+            const atendimentos =
+                await this.atendimentoService.buscarPorPacienteId(id);
+            res.status(HttpStatus.OK).send(atendimentos);
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
 
     @Post()
     async inserirAtendimento(

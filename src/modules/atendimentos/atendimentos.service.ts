@@ -169,4 +169,16 @@ export class AtendimentosService {
             throw new BadRequestException(error.message);
         }
     }
+
+    async buscarPorPacienteId(id: string): Promise<Atendimento[]> {
+        try {
+            const atendimentos = await this.repositoryAtendimento.find({
+                where: { pacienteId: Number(id) },
+            });
+
+            return atendimentos;
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
 }
