@@ -1,10 +1,13 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('administrador')
 export class Administrador {
+    @ApiProperty()
     @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
+    @ApiProperty()
     @Column({
         name: 'nome',
         type: 'varchar',
@@ -12,6 +15,7 @@ export class Administrador {
     })
     nome: string;
 
+    @ApiProperty()
     @Column({
         name: 'cpf',
         type: 'varchar',
@@ -19,6 +23,7 @@ export class Administrador {
     })
     cpf: string;
 
+    @ApiProperty()
     @Column({
         name: 'email',
         type: 'varchar',
@@ -26,6 +31,7 @@ export class Administrador {
     })
     email: string;
 
+    @ApiProperty()
     @Column({
         name: 'telefone',
         type: 'varchar',
@@ -33,6 +39,7 @@ export class Administrador {
     })
     telefone: string;
 
+    @ApiProperty()
     @Column({ name: 'data_nascimento', type: 'date' })
     dataNascimento: string;
 }

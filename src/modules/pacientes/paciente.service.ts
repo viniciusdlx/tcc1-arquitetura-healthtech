@@ -28,4 +28,13 @@ export class PacienteService {
             throw new BadRequestException(error.message);
         }
     }
+
+    async buscarTodos(): Promise<Paciente[]> {
+        try {
+            const pacientes = await this.pacienteRepository.find();
+            return pacientes;
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
 }

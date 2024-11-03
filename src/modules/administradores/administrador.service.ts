@@ -29,4 +29,14 @@ export class AdministradorService {
             throw new ExceptionsHandler(error.message);
         }
     }
+
+    async buscarTodos(): Promise<Administrador[]> {
+        try {
+            const admins = await this.adminRepository.find();
+
+            return admins;
+        } catch (error) {
+            throw new ExceptionsHandler(error.message);
+        }
+    }
 }

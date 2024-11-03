@@ -34,4 +34,12 @@ export class MedicoService {
             throw new BadRequestException(error.message);
         }
     }
+
+    async buscarTodos(): Promise<Medico[]> {
+        try {
+            return await this.medicoRepository.find();
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
 }

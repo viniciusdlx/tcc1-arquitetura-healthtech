@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
     Column,
     CreateDateColumn,
@@ -20,15 +21,19 @@ export enum AtendimentoStatusEnum {
 
 @Entity('atendimento')
 export class Atendimento {
+    @ApiProperty()
     @PrimaryGeneratedColumn({ type: 'int' })
     id: number;
 
+    @ApiProperty()
     @Column({ name: 'data', type: 'date' })
     data: string;
 
+    @ApiProperty()
     @Column({ name: 'hora', type: 'time' })
     hora: string;
 
+    @ApiProperty()
     @Column({
         name: 'status',
         type: 'varchar',
@@ -38,6 +43,7 @@ export class Atendimento {
     })
     status: AtendimentoStatusEnum;
 
+    @ApiProperty()
     @Column({
         name: 'modalidade',
         type: 'varchar',
@@ -45,6 +51,7 @@ export class Atendimento {
     })
     modalidade: AtendimentoModalidadeEnum;
 
+    @ApiProperty()
     @Column({
         name: 'local',
         type: 'varchar',
@@ -54,6 +61,7 @@ export class Atendimento {
     })
     local: string;
 
+    @ApiProperty()
     @Column({
         name: 'url',
         type: 'varchar',
@@ -63,18 +71,23 @@ export class Atendimento {
     })
     url: string;
 
+    @ApiProperty()
     @Column({ name: 'medico_id', type: 'int', width: 11 })
     medicoId: number;
 
+    @ApiProperty()
     @Column({ name: 'paciente_id', type: 'int', width: 11 })
     pacienteId: number;
 
+    @ApiProperty()
     @Column({ name: 'admin_id', type: 'int', width: 11 })
     adminId: number;
 
+    @ApiProperty()
     @CreateDateColumn({ type: 'date' })
     dataCriacao: Date;
 
+    @ApiProperty()
     @UpdateDateColumn({ type: 'date' })
     dataAtualizacao: Date;
 }

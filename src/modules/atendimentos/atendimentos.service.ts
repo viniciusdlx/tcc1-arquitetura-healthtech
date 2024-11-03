@@ -193,4 +193,14 @@ export class AtendimentosService {
             throw new BadRequestException(error.message);
         }
     }
+
+    async buscarTodos(): Promise<Atendimento[]> {
+        try {
+            const atendimentos = await this.repositoryAtendimento.find();
+
+            return atendimentos;
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
 }
