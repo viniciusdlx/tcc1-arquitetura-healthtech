@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { AtualizarMedicoDto } from './DTO/atualizar-medico.dto';
 import { InserirMedicoDto } from './DTO/inserir-medico.dto';
 import { Medico } from './medico.entity';
 
@@ -38,6 +39,27 @@ export class MedicoService {
     async buscarTodos(): Promise<Medico[]> {
         try {
             return await this.medicoRepository.find();
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
+
+    async atualizarMedico(
+        atualizarMedicoDto: AtualizarMedicoDto,
+    ): Promise<Medico> {
+        try {
+            const update = await this.medicoRepository.update(
+                atualizarMedicoDto.id,
+                {
+                    horarios: atualizarMedicoDto.horarios,
+                },
+            );
+
+            if (update.affected > 0) {
+                return await this.medicoRepository.findOneBy({
+                    id: atualizarMedicoDto.id,
+                });
+            }
         } catch (error) {
             throw new BadRequestException(error.message);
         }

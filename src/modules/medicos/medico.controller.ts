@@ -3,7 +3,9 @@ import {
     Body,
     Controller,
     Get,
+    Param,
     Post,
+    Put,
 } from '@nestjs/common';
 import {
     ApiBadRequestResponse,
@@ -12,6 +14,7 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
+import { AtualizarMedicoDto } from './DTO/atualizar-medico.dto';
 import { InserirMedicoDto } from './DTO/inserir-medico.dto';
 import { Medico } from './medico.entity';
 import { MedicoService } from './medico.service';
@@ -38,6 +41,27 @@ export class MedicoController {
                 telefone: inserirMedicoDto.telefone,
                 email: inserirMedicoDto.email,
                 horarios: inserirMedicoDto.horarios,
+            });
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+    }
+
+    @ApiCreatedResponse({
+        description: 'Medico atualizado com sucesso.',
+    })
+    @ApiBadRequestResponse()
+    @ApiBody({ type: AtualizarMedicoDto })
+    @ApiResponse({ type: Medico })
+    @Put(':id')
+    async atualizar(
+        @Param('id') id: string,
+        @Body() atualizarMedicoDto: AtualizarMedicoDto,
+    ) {
+        try {
+            return await this.medicoService.atualizarMedico({
+                id: Number(id),
+                horarios: atualizarMedicoDto.horarios,
             });
         } catch (error) {
             throw new BadRequestException(error.message);
