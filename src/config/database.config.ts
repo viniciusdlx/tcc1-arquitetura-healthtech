@@ -1,9 +1,17 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { dbEnvs } from './env';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
-    type: 'sqlite',
-    database: 'healthtech.db',
+    type: 'postgres',
+    url: dbEnvs.url,
+    // host: dbEnvs.host,
+    // port: dbEnvs.port,
+    // username: dbEnvs.username,
+    // password: dbEnvs.password,
+    // database: dbEnvs.database,
+    ssl: {
+        rejectUnauthorized: false,
+    },
     entities: [__dirname + '/../**/**/*.entity{.ts,.js}'],
-    synchronize: true, // Sincroniza o esquema do banco de dados com as entidades automaticamente
-    // logging: true,
+    synchronize: true, // Isso deve ser false em produção
 };
