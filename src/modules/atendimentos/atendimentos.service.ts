@@ -3,12 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Medico } from '../medicos/medico.entity';
 import { MedicoService } from '../medicos/medico.service';
-import { InserirAtendimentoDto } from './DTO/inserir-atendimento.dto';
 import {
     Atendimento,
     AtendimentoModalidadeEnum,
     AtendimentoStatusEnum,
 } from './atendimento.entity';
+import { InserirAtendimentoDto } from './DTO/inserir-atendimento.dto';
+import { QueryAtendimentoDto } from './DTO/query-atendimento.dto';
 
 @Injectable()
 export class AtendimentosService {
@@ -194,9 +195,13 @@ export class AtendimentosService {
         }
     }
 
-    async buscarTodos(): Promise<Atendimento[]> {
+    async buscarTodos(query: QueryAtendimentoDto): Promise<Atendimento[]> {
         try {
-            const atendimentos = await this.repositoryAtendimento.find();
+            const atendimentos = await this.repositoryAtendimento.find({
+                where: { pacienteId: query.pacienteId },
+            });
+
+            console.log('atendimentos.length -> ', atendimentos.length);
 
             return atendimentos;
         } catch (error) {

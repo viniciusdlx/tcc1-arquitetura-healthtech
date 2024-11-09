@@ -32,6 +32,9 @@ export class PacienteService {
     async buscarTodos(): Promise<Paciente[]> {
         try {
             const pacientes = await this.pacienteRepository.find();
+
+            console.log('pacientes.length -> ', pacientes.length);
+
             return pacientes;
         } catch (error) {
             throw new BadRequestException(error.message);

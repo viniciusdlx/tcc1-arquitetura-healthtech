@@ -34,6 +34,8 @@ export class AdministradorService {
         try {
             const admins = await this.adminRepository.find();
 
+            console.log('admins.length -> ', admins.length);
+
             return admins;
         } catch (error) {
             throw new ExceptionsHandler(error.message);

@@ -3,7 +3,9 @@ import {
     Body,
     Controller,
     Get,
+    HttpStatus,
     Post,
+    Res,
 } from '@nestjs/common';
 import {
     ApiBadRequestResponse,
@@ -11,6 +13,7 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
+import { Response } from 'express';
 import { InserirAdministradorDto } from './DTO/inserir-administrador.dto';
 import { Administrador } from './administrador.entity';
 import { AdministradorService } from './administrador.service';
@@ -38,9 +41,10 @@ export class AdministradorController {
 
     @ApiResponse({ isArray: true, type: Administrador })
     @Get()
-    async buscarTodos(): Promise<Administrador[]> {
+    async buscarTodos(@Res() res: Response) {
         try {
-            return await this.administradorService.buscarTodos();
+            const admins = await this.administradorService.buscarTodos();
+            res.status(HttpStatus.OK).send(admins);
         } catch (error) {
             throw new BadRequestException(error.message);
         }

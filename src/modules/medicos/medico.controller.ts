@@ -3,9 +3,11 @@ import {
     Body,
     Controller,
     Get,
+    HttpStatus,
     Param,
     Post,
     Put,
+    Res,
 } from '@nestjs/common';
 import {
     ApiBadRequestResponse,
@@ -14,6 +16,7 @@ import {
     ApiResponse,
     ApiTags,
 } from '@nestjs/swagger';
+import { Response } from 'express';
 import { AtualizarMedicoDto } from './DTO/atualizar-medico.dto';
 import { InserirMedicoDto } from './DTO/inserir-medico.dto';
 import { Medico } from './medico.entity';
@@ -70,9 +73,10 @@ export class MedicoController {
 
     @Get()
     @ApiResponse({ isArray: true, type: Medico })
-    async getAll() {
+    async getAll(@Res() res: Response) {
         try {
-            return await this.medicoService.buscarTodos();
+            const medicos = await this.medicoService.buscarTodos();
+            res.status(HttpStatus.OK).send(medicos);
         } catch (error) {
             throw new BadRequestException(error.message);
         }

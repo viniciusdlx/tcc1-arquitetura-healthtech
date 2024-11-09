@@ -38,7 +38,11 @@ export class MedicoService {
 
     async buscarTodos(): Promise<Medico[]> {
         try {
-            return await this.medicoRepository.find();
+            const medicos = await this.medicoRepository.find();
+
+            console.log('medicos.length -> ', medicos.length);
+
+            return medicos;
         } catch (error) {
             throw new BadRequestException(error.message);
         }

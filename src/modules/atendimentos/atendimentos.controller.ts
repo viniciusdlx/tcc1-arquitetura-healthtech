@@ -7,6 +7,7 @@ import {
     Param,
     Post,
     Put,
+    Query,
     Res,
 } from '@nestjs/common';
 import {
@@ -17,9 +18,10 @@ import {
     ApiTags,
 } from '@nestjs/swagger';
 import { Response } from 'express';
-import { InserirAtendimentoDto } from './DTO/inserir-atendimento.dto';
 import { Atendimento } from './atendimento.entity';
 import { AtendimentosService } from './atendimentos.service';
+import { InserirAtendimentoDto } from './DTO/inserir-atendimento.dto';
+import { QueryAtendimentoDto } from './DTO/query-atendimento.dto';
 
 @ApiTags('Atendimentos')
 @Controller('atendimentos')
@@ -56,9 +58,13 @@ export class AtendimentosController {
 
     @ApiResponse({ isArray: true, type: Atendimento })
     @Get()
-    async buscarTodos(@Res() res: Response) {
+    async buscarTodos(
+        @Query() query: QueryAtendimentoDto,
+        @Res() res: Response,
+    ) {
         try {
-            const atendimentos = await this.atendimentoService.buscarTodos();
+            const atendimentos =
+                await this.atendimentoService.buscarTodos(query);
             res.status(HttpStatus.OK).send(atendimentos);
         } catch (error) {
             throw new BadRequestException(error.message);
